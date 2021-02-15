@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 class Ind:
-    def __init__(self, sck=False, ctg=0, inf=0, pod=None):  # Edit > Find and Replace > str(?=\W)
+    def __init__(self, sck=False, ctg=0, inf=0, pod=None):
         self.sck = sck  # sick/infected at some point
         self.ctg = ctg  # contagious period
         self.inf = inf  # number of people you infected
