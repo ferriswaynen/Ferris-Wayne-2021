@@ -45,6 +45,7 @@ def contact(p, b):
         caught = rando(pod)
     else:
         caught = rando(pop)
+
     timing = {1: .012, 2: .013, 3: .015, 4: .02, 5: .03, 6: .045, 7: .07, 8: .095, 9: .125, 10: .16, 11: .18, 12: .15}
     r = 2.5  # R0
     x = r/9 * timing[p.ctg]
@@ -70,9 +71,11 @@ def run(n, s, t, m, d=0, b=1/2):  # number of sims, population size, days, inter
                     p.ctg -= 1
             daily_sck.append(sum(1 for p in pop if p.sck))
         sim_sck.append(daily_sck)
+
     arrays = [np.array(x) for x in sim_sck]
     avg_sck = list(map(round, [np.mean(k) for k in zip(*arrays)]))
     print(f'{avg_sck[-1]}\t(reached by day {avg_sck.index(avg_sck[-1])})')
+
     tots = [x[-1] for x in sim_sck]
     print('Stdev:', np.std(tots, ddof=1))
 
@@ -103,6 +106,7 @@ def main():
               '5/pod, 20 interactions/day 50% in pod': [50, 20, 5],
               '5/pod, 20 interactions/day 75% in pod': [50, 20, 5, 3 / 4],
               '5/pod, 20 interactions/day 90% in pod': [50, 20, 5, 9 / 10]}
+
     test_2 = {'No pods, 5 interactions/day': [50, 5],
               '10/pod, 5 interactions/day 50% in pod': [50, 5, 10],
               '10/pod, 5 interactions/day 75% in pod': [50, 5, 10, 3 / 4],
@@ -115,6 +119,7 @@ def main():
               '10/pod, 20 interactions/day 50% in pod': [50, 20, 10],
               '10/pod, 20 interactions/day 75% in pod': [50, 20, 10, 3 / 4],
               '10/pod, 20 interactions/day 90% in pod': [50, 20, 10, 9 / 10]}
+
     test_3 = {'No pods, 5 interactions/day': [50, 5],
               '20/pod, 5 interactions/day 50% in pod': [50, 5, 20],
               '20/pod, 5 interactions/day 75% in pod': [50, 5, 20, 3 / 4],
@@ -127,6 +132,7 @@ def main():
               '20/pod, 20 interactions/day 50% in pod': [50, 20, 20],
               '20/pod, 20 interactions/day 75% in pod': [50, 20, 20, 3 / 4],
               '20/pod, 20 interactions/day 90% in pod': [50, 20, 20, 9 / 10]}
+
     tests = [test_1, test_2, test_3]
     for test in tests:
         for i in range(len(test)):
@@ -138,3 +144,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
